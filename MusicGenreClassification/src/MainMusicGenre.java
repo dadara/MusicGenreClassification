@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.IOException;
 
 import net.beadsproject.beads.analysis.featureextractors.SpectralCentroid;
+import net.beadsproject.beads.analysis.featureextractors.SpectralDifference;
 import net.beadsproject.beads.core.AudioContext;
 import net.beadsproject.beads.data.audiofile.FileFormatException;
 import net.beadsproject.beads.data.audiofile.OperationUnsupportedException;
@@ -66,6 +67,30 @@ public class MainMusicGenre {
 		
 		framesSum = framesSum/frames.length;
 		
+		return framesSum;
+	}
+	
+	public static float getSpectralFlux(float[] frames, long sampleR){
+		
+		SpectralDifference sd = new SpectralDifference(sampleR);
+		
+		
+		float framesSum = 0;
+//		for(int i = 1; i < frames.length; i++){			
+//			framesSum += frames[i];
+//		}
+//		
+//		float spectralFlux = 0;
+//		float normFrame1;
+//		float normFrame2;
+//		
+//		for(int i = 1; i < frames.length; i++){
+//			normFrame1 = frames[i]/framesSum;
+//			normFrame2 = frames[i-1]/framesSum;			
+//			Math.sqrt(normFrame1-normFrame2);			
+//		}
+		
+		framesSum = framesSum/frames.length;	
 		return framesSum;
 	}
 }
