@@ -70,27 +70,44 @@ public class MainMusicGenre {
 		return framesSum;
 	}
 	
-	public static float getSpectralFlux(float[] frames, long sampleR){
+	public static float getSpectralFlux(float[] frames, long sampleR, TimeStamp beg, TimeStamp end){
 		
 		SpectralDifference sd = new SpectralDifference(sampleR);
 		
 		
 		float framesSum = 0;
-//		for(int i = 1; i < frames.length; i++){			
-//			framesSum += frames[i];
-//		}
-//		
-//		float spectralFlux = 0;
-//		float normFrame1;
-//		float normFrame2;
-//		
+		for(int i = 1; i < frames.length; i++){			
+			framesSum += frames[i];
+		}
+		
+		float spectralFlux = 0;
+		float normFrame1;
+		float normFrame2;
+		
 //		for(int i = 1; i < frames.length; i++){
 //			normFrame1 = frames[i]/framesSum;
 //			normFrame2 = frames[i-1]/framesSum;			
 //			Math.sqrt(normFrame1-normFrame2);			
 //		}
+//		framesSum = framesSum/frames.length;	
+
+		float[] normFrames = new float[frames.length];
 		
-		framesSum = framesSum/frames.length;	
-		return framesSum;
+		for(int i = 0; i < frames.length; i++){
+			normFrames[i] = frames[i]/framesSum;		
+		}
+		
+//		for(int i = 1; i < frames.length; i++){
+//			spectralFlux += normFrames[i] = frames[i]/framesSum;		
+//		}
+		
+//		sd.process(beg, end, normFrames);
+//		float[] diffFrames = new float[frames.length];
+//
+//		diffFrames  = sd.getFeatures();
+//		
+////		return framesSum;
+		return spectralFlux;
+
 	}
 }
